@@ -3,7 +3,7 @@ package robotx.libraries;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import robotx.modules.TwoMotorDrive;
+import robotx.OldModules.TwoMotorDrive;
 
 /**
  * Created by Robot-X Team 4969 on 12/6/2016.

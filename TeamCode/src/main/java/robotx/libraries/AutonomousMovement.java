@@ -2,8 +2,6 @@ package robotx.libraries;
 
 import com.qualcomm.robotcore.eventloop.opmode.*;
 
-import robotx.modules.TwoMotorDrive;
-
 /**
  * Created by Robot-X Team 4969 on 12/6/2016.
  */
