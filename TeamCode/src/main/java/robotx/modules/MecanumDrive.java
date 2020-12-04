@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import robotx.libraries.OmniDriveSystem;
 
 /**
- * Created by WB on 9/24/2018.
+ * Created by Adi on 4/20/2018.
  */
 
 public class MecanumDrive extends OmniDriveSystem {
@@ -16,23 +16,13 @@ public class MecanumDrive extends OmniDriveSystem {
     public DcMotor backLeft;
     public DcMotor backRight;
 
-    double frontRightPower = (getYPower() - getXPower() + getRotationPower());
-    double frontLeftPower = (getYPower() + getXPower() - getRotationPower());
-    double backRightPower = (getYPower() + getXPower() + getRotationPower());
-    double backLeftPower = (getYPower() - getXPower() - getRotationPower());
-
-    double halfFrontRightPower = frontRightPower * 0.6;
-    double halfFrontLeftPower = frontLeftPower * 0.6;
-    double halfBackRightPower = backRightPower * 0.6;
-    double halfBackLeftPower = backLeftPower * 0.6;
-
     public MecanumDrive(OpMode op) {
         super(op);
     }
 
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);                //reverse is necessary: up on Y stick makes frontLeft counterclockwise and frontRight clockwise
         frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         frontRight = opMode.hardwareMap.dcMotor.get("frontRight");
         frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -45,12 +35,15 @@ public class MecanumDrive extends OmniDriveSystem {
 
     public void updateMotors(){
         opMode.telemetry.addData("frontRight", getYPower() - getXPower() - getRotationPower());
-        frontRight.setPower(halfFrontRightPower);
+        frontRight.setPower(getYPower() + getXPower() - getRotationPower());
+
         opMode.telemetry.addData("frontLeft", getYPower() + getXPower() + getRotationPower());
-        frontLeft.setPower(halfFrontLeftPower);
+        frontLeft.setPower(getYPower() - getXPower() + getRotationPower());                                         //frontLeft and backRight have the same "getYpower + getXpower"
+
         opMode.telemetry.addData("backRight", getYPower() + getXPower() - getRotationPower());
-        backRight.setPower(halfBackRightPower);
+        backRight.setPower(getYPower() - getXPower() - getRotationPower());
+
         opMode.telemetry.addData("backLeft", getYPower() - getXPower() + getRotationPower());
-        backLeft.setPower(halfBackLeftPower);
+        backLeft.setPower(getYPower() + getXPower() + getRotationPower());
     }
 }

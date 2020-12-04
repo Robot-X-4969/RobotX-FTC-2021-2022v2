@@ -56,6 +56,13 @@ public class RobotXAutonomous2021 extends LinearOpMode {
 
         waitForStart();
         //runtime.reset();
+
+        if (opModeIsActive()) {
+            //Movement
+
+            //INSERT CODE HERE
+
+        }
     }
 
 
