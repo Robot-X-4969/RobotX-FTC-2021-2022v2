@@ -11,6 +11,8 @@ public class Launcher extends XModule {
     double launcherPower = 0.7;
     double powerShotPower = 0.5;
 
+    boolean launcherOn = false;
+
     public Launcher(OpMode op) {
         super(op);
     }
@@ -19,12 +21,25 @@ public class Launcher extends XModule {
         launcherMotor = opMode.hardwareMap.dcMotor.get("LauncherMotor");
     }
 
-    public void loop() {
-        if (xGamepad2().dpad_right.isDown()) {
+    public void launcherMotor() {
+        if (launcherOn == false) {
             launcherMotor.setPower(launcherPower);
+            launcherOn = true;
         }
 
-        else if (xGamepad2().left_stick_button.isDown()) {
+        else {
+            launcherMotor.setPower(0.0);
+            launcherOn = false;
+        }
+    }
+
+    public void loop() {
+
+        if (xGamepad2().dpad_right.wasPressed()) {
+            launcherMotor();
+        }
+
+        if (xGamepad2().left_stick_button.isDown()) {
             launcherMotor.setPower(powerShotPower);
         }
 
