@@ -39,7 +39,7 @@ public class Launcher extends XModule {
             launcherMotor();
         }
 
-        if (xGamepad2().left_stick_button.isDown()) {
+        else if (xGamepad2().left_stick_button.isDown()) {
             launcherMotor.setPower(powerShotPower);
         }
 
