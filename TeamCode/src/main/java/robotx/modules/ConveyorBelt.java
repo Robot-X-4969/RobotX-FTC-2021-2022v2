@@ -18,11 +18,11 @@ public class ConveyorBelt extends XModule {
     }
 
     public void loop() {
-        if (xGamepad2().x.isDown()) {
+        if (xGamepad2().left_bumper.isDown()) {
             conveyorMotor.setPower(-power2);
         }
 
-        else if (xGamepad2().y.isDown()) {
+        else if (xGamepad2().right_bumper.isDown()) {
             conveyorMotor.setPower(power2);
         }
 
