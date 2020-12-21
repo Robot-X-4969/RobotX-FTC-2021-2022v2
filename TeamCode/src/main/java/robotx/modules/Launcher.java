@@ -54,11 +54,11 @@ public class Launcher extends XModule {
         }
 
         if (xGamepad2().right_stick_button.isDown()) {
-            launcherServo.setPosition(0.5);
+            launcherServo.setPosition(0.735);
         }
 
         else {
-            launcherServo.setPosition(0.0);
+            launcherServo.setPosition(0.89);
         }
     }
 }

@@ -123,7 +123,7 @@ public class MecanumDrive extends XModule{
         //+ rotPow -> if control stick is right (positive value), want to spin forwards
 
         //double brPow = .75 * (yPow - xPow - rotPow);
-        double brPow = yPow - xPow - rotPow; 
+        double brPow = yPow - xPow - rotPow;
         backRight.setPower(brPow);
         //+ yPow -> if control stick is up, want to move forwards
         //- xPow -> if control stick is right (positive value), want to spin backwards

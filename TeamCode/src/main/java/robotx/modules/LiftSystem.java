@@ -55,11 +55,15 @@ public class LiftSystem extends XModule {
         }
 
         if (xGamepad2().a.wasPressed()) {
-            liftServo.setPosition(0.0);
+            liftServo.setPosition(0.045);
         }
 
         else if (xGamepad2().b.wasPressed()) {
-            liftServo.setPosition(0.0);
+            liftServo.setPosition(0.19);
+        }
+
+        else {
+            liftServo.setPosition(0.238);
         }
 
         if (xGamepad2().dpad_left.wasPressed()) {
