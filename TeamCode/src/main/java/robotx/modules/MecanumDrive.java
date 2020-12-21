@@ -108,17 +108,22 @@ public class MecanumDrive extends XModule{
         //note: can just keep using yPow for forwards for all four wheels even when they spin in opposite directions to move forward; reversed some motors earlier
         //- xPow -> if pressing stick to the right (positive value), want this to spin backwards
         //+ rotPow -> if want to rotate to right (positive value), want this to spin forwards
+
         double frPow = yPow + xPow - rotPow;
         frontRight.setPower(frPow);
         //+ yPow -> if control stick is up, want to move forwards
         //+ xPow -> if control stick is right (positive value), want to spin forwards
         //- rotPow -> if control stick is right (positive value), want to spin backwards
-        double blPow = .75 * (yPow + xPow + rotPow);
+
+        //double blPow = .75 * (yPow + xPow + rotPow);
+        double blPow = yPow + xPow + rotPow;
         backLeft.setPower(blPow);
         //+ yPow -> if control stick is up, want to move forwards
         //+ xPow -> if control stick is right (positive value), want to spin forwards
         //+ rotPow -> if control stick is right (positive value), want to spin forwards
-        double brPow = .75 * (yPow - xPow - rotPow);
+
+        //double brPow = .75 * (yPow - xPow - rotPow);
+        double brPow = yPow - xPow - rotPow; 
         backRight.setPower(brPow);
         //+ yPow -> if control stick is up, want to move forwards
         //- xPow -> if control stick is right (positive value), want to spin backwards
