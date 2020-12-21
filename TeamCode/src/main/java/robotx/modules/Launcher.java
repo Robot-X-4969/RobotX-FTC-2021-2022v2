@@ -3,10 +3,13 @@ import robotx.libraries.XModule;
 
 import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class Launcher extends XModule {
 
     DcMotor launcherMotor;
+
+    Servo launcherServo;
 
     double launcherPower = 0.7;
     double powerShotPower = 0.5;
@@ -18,7 +21,10 @@ public class Launcher extends XModule {
     }
 
     public void init() {
+
         launcherMotor = opMode.hardwareMap.dcMotor.get("LauncherMotor");
+
+        launcherServo = opMode.hardwareMap.servo.get("LauncherServo");
     }
 
     public void launcherMotor() {
@@ -45,6 +51,14 @@ public class Launcher extends XModule {
 
         else {
             launcherMotor.setPower(0.0);
+        }
+
+        if (xGamepad2().right_stick_button.isDown()) {
+            launcherServo.setPosition(0.5);
+        }
+
+        else {
+            launcherServo.setPosition(0.0);
         }
     }
 }

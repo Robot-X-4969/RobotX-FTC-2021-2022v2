@@ -46,3 +46,24 @@ public class RobotXOpMode2021 extends XOpMode {
         super.init();
     }
 }
+
+/*
+Controls
+GamePad 1:
+- Joysticks to drive
+- left_bumper: 1/4 speed
+- right_bumper: 1/2 speed
+
+GamePad 2:
+- a: Lift servo opens
+- b: Lift servo closes
+- x: Intake moves inward
+- y: Intake moves outward
+- dpad_up: Lift goes up
+- dpad_down: Lift goes down
+- left_bumper: Conveyor closes
+- right_bumper: Conveyor opens
+- dpad_right: Turns launcher on/off
+- left_stick_button: Power shot
+- right_stick_button: Turns on launcher servo
+ */

@@ -42,11 +42,11 @@ public class LiftSystem extends XModule {
     }
 
     public void loop() {
-        if (xGamepad2().a.isDown()) {
+        if (xGamepad2().dpad_up.isDown()) {
             liftMotor.setPower(-power);
         }
 
-        else if (xGamepad2().b.isDown()) {
+        else if (xGamepad2().dpad_down.isDown()) {
             liftMotor.setPower(power);
         }
 
@@ -54,11 +54,11 @@ public class LiftSystem extends XModule {
             liftMotor.setPower(0.0);
         }
 
-        if (xGamepad2().dpad_up.wasPressed()) {
+        if (xGamepad2().a.wasPressed()) {
             liftServo.setPosition(0.0);
         }
 
-        else if (xGamepad2().dpad_down.wasPressed()) {
+        else if (xGamepad2().b.wasPressed()) {
             liftServo.setPosition(0.0);
         }
 
