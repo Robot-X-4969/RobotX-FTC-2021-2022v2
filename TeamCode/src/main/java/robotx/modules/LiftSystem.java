@@ -44,22 +44,22 @@ public class
 
     public void loop() {
         if (xGamepad2().dpad_up.isDown()) {
-            liftMotor.setPower(-power);
+            liftMotor.setPower(power);
         }
 
         else if (xGamepad2().dpad_down.isDown()) {
-            liftMotor.setPower(power);
+            liftMotor.setPower(-power);
         }
 
         else {
             liftMotor.setPower(0.0);
         }
 
-        if (xGamepad2().a.wasPressed()) {
+        if (xGamepad2().a.isDown()) {
             liftServo.setPosition(0.045);
         }
 
-        else if (xGamepad2().b.wasPressed()) {
+        else if (xGamepad2().b.isDown()) {
             liftServo.setPosition(0.19);
         }
 

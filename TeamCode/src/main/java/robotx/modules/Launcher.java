@@ -28,14 +28,14 @@ public class Launcher extends XModule {
     }
 
     public void launcherMotor() {
-        if (launcherOn == false) {
-            launcherMotor.setPower(launcherPower);
-            launcherOn = true;
-        }
-
-        else {
-            launcherMotor.setPower(0.0);
+        if (launcherOn) {
             launcherOn = false;
+            launcherMotor.setPower(0);
+
+        }
+        else {
+            launcherOn = true;
+            launcherMotor.setPower(launcherPower);
         }
     }
 
@@ -49,11 +49,7 @@ public class Launcher extends XModule {
             launcherMotor.setPower(powerShotPower);
         }
 
-        else {
-            launcherMotor.setPower(0.0);
-        }
-
-        if (xGamepad2().right_stick_button.isDown()) {
+        if (xGamepad2().right_trigger > 0.5) {
             launcherServo.setPosition(0.735);
         }
 
