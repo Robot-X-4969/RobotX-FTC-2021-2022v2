@@ -8,7 +8,8 @@ import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
-public class LiftSystem extends XModule {
+public class
+ LiftSystem extends XModule {
 
     DcMotor liftMotor;
 
@@ -32,11 +33,11 @@ public class LiftSystem extends XModule {
 
     public void clawServo() {
         if (clawOpen == false) {
-            clawServo.setPosition(1.0);
+            clawServo.setPosition(0.47);
             clawOpen = true;
         }
         else {
-            clawServo.setPosition(0.0);
+            clawServo.setPosition(0.1);
             clawOpen = false;
         }
     }

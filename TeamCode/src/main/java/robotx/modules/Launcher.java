@@ -11,8 +11,8 @@ public class Launcher extends XModule {
 
     Servo launcherServo;
 
-    double launcherPower = 0.7;
-    double powerShotPower = 0.5;
+    double launcherPower = 1.0;
+    double powerShotPower = 0.9;
 
     boolean launcherOn = false;
 
@@ -58,7 +58,7 @@ public class Launcher extends XModule {
         }
 
         else {
-            launcherServo.setPosition(0.89);
+            launcherServo.setPosition(0.95);
         }
     }
 }

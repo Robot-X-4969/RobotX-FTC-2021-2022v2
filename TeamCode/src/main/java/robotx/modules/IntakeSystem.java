@@ -11,7 +11,7 @@ public class IntakeSystem extends XModule {
 
     DcMotor intakeMotor;
 
-    double power = 0.3;
+    double power = 0.5;
 
     public IntakeSystem (OpMode op) {
         super(op);
