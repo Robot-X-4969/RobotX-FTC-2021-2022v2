@@ -66,5 +66,5 @@ GamePad 2:
 - right_bumper: Conveyor opens
 - dpad_right: Turns launcher on/off
 - left_stick_button: Power shot
-- right_stick_button: Turns on launcher servo
+- right_trigger: Turns on launcher servo
  */
