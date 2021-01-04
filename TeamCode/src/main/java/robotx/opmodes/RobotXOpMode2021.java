@@ -62,8 +62,9 @@ GamePad 2:
 - y: Intake moves outward
 - dpad_up: Lift goes up
 - dpad_down: Lift goes down
-- left_bumper: Conveyor closes
-- right_bumper: Conveyor opens
+- left_bumper: Conveyor pushes towards intake
+- right_bumper: Conveyor pushes towards launcher
+- dpad_left: Claw servo raises/lowers
 - dpad_right: Turns launcher on/off
 - left_stick_button: Power shot
 - right_trigger: shoots ring

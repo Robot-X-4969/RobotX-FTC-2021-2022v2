@@ -16,7 +16,7 @@ public class
     Servo liftServo;
     Servo clawServo;
 
-    double power = 0.8;
+    double power = 0.7;
 
     boolean clawOpen = false;
 

@@ -7,12 +7,12 @@ import com.qualcomm.robotcore.hardware.Servo;
 
 public class Launcher extends XModule {
 
-    DcMotor launcherMotor;
+    public DcMotor launcherMotor;
 
-    Servo launcherServo;
+    public Servo launcherServo;
 
     double launcherPower = 1.0;
-    double powerShotPower = 0.9;
+    public double powerShotPower = 0.9;
 
     boolean launcherOn = false;
 

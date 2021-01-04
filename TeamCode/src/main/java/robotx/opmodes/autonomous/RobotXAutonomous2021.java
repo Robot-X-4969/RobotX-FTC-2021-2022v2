@@ -16,6 +16,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import robotx.libraries.XOpMode;
 import robotx.modules.MecanumDrive;
 import robotx.modules.IntakeSystem;
+import robotx.modules.Launcher;
 
 import static java.lang.Thread.sleep;
 
@@ -28,6 +29,7 @@ public class RobotXAutonomous2021 extends LinearOpMode {
     //Modules being imported
     MecanumDrive mecanumDrive;
     IntakeSystem intakeSystem;
+    Launcher launcher;
 
 
     @Override
@@ -43,9 +45,13 @@ public class RobotXAutonomous2021 extends LinearOpMode {
         intakeSystem = new IntakeSystem(this);
         intakeSystem.init();
 
+        launcher = new Launcher(this);
+        launcher.init();
+
 
         mecanumDrive.start();
         intakeSystem.start();
+        launcher.start();
 
         mecanumDrive.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mecanumDrive.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -61,7 +67,36 @@ public class RobotXAutonomous2021 extends LinearOpMode {
         if (opModeIsActive()) {
             //Movement
 
-            //INSERT CODE HERE
+            StrafeRight(0.7, 825);
+            StopDriving();
+            sleep(250);
+            DriveBackward(0.7, 900);
+            StopDriving();
+            sleep(250);
+            PowerShot(2000);
+            StopDriving();
+            sleep(250);
+            launcher.launcherServo.setPosition(0.95);
+            sleep(250);
+            StrafeLeft(0.7, 225);
+            StopDriving();
+            sleep(250);
+            PowerShot(2000);
+            StopDriving();
+            sleep(250);
+            launcher.launcherServo.setPosition(0.95);
+            sleep(250);
+            StrafeLeft(0.7, 250);
+            StopDriving();
+            sleep(250);
+            PowerShot(2000);
+            StopDriving();
+            sleep(250);
+            launcher.launcherServo.setPosition(0.95);
+            sleep(250);
+            DriveBackward(0.7, 400);
+            StopDriving();
+            sleep(15000);
 
         }
     }
@@ -138,6 +173,13 @@ public class RobotXAutonomous2021 extends LinearOpMode {
         mecanumDrive.frontRight.setPower(0);
         mecanumDrive.backLeft.setPower(0);
         mecanumDrive.backRight.setPower(0);
+    }
+
+    public void PowerShot(int time) {
+        launcher.launcherMotor.setPower(launcher.powerShotPower);
+        launcher.launcherServo.setPosition(0.735);
+        sleep(time);
+        launcher.launcherMotor.setPower(0);
     }
 
     public void StopDriving() {

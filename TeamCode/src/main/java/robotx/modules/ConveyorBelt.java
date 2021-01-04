@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 public class ConveyorBelt extends XModule {
     DcMotor conveyorMotor;
 
-    double power2 = 0.35;
+    double power2 = 0.55;
 
     public ConveyorBelt(OpMode op) {
         super(op);
