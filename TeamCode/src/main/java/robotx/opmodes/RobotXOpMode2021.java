@@ -56,8 +56,8 @@ GamePad 1:
 - right_bumper: 1/2 speed
 
 GamePad 2:
-- a: Lift servo opens
-- b: Lift servo closes
+- a: Lift servo lifts
+- b: Lift servo drops
 - x: Intake moves inward
 - y: Intake moves outward
 - dpad_up: Lift goes up
@@ -66,5 +66,5 @@ GamePad 2:
 - right_bumper: Conveyor opens
 - dpad_right: Turns launcher on/off
 - left_stick_button: Power shot
-- right_trigger: Turns on launcher servo
+- right_trigger: shoots ring
  */
