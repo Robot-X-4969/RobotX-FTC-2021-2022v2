@@ -11,7 +11,7 @@ public class Launcher extends XModule {
 
     public Servo launcherServo;
 
-    double launcherPower = 1.0;
+    double launcherPower = 0.8;
     public double powerShotPower = 0.9;
 
     boolean launcherOn = false;
@@ -49,11 +49,11 @@ public class Launcher extends XModule {
             launcherMotor.setPower(powerShotPower);
         }
 
-        if (xGamepad2().right_trigger > 0.5) {
+        if (xGamepad2().right_bumper.wasPressed()) {
             launcherServo.setPosition(0.735);
         }
 
-        else {
+        else if (xGamepad2().left_bumper.wasPressed()) {
             launcherServo.setPosition(0.95);
         }
     }

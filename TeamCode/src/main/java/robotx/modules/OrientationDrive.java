@@ -40,6 +40,11 @@ public class OrientationDrive extends XModule {
     public boolean slowMode = false;
     public boolean superSlowMode = false;
 
+    double flPow = ((yPrime-xPrime-r)*(s));
+    double frPow = ((yPrime+xPrime+r)*(s));
+    double brPow = ((yPrime-xPrime+r)*(s));
+    double blPow = ((yPrime+xPrime-r)*(s));
+
     public void init(){
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
         frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -181,5 +186,42 @@ public class OrientationDrive extends XModule {
             frontRight.setPower((yPrime+xPrime+r)*(s));
             backLeft.setPower((yPrime+xPrime-r)*(s));
         }
+
+
+    /*
+        if ( 0 < Math.abs(flPow) && Math.abs(flPow) < 0.4){
+            frontLeft.setPower(0);
+            frontRight.setPower(0);
+            backLeft.setPower(0);
+            backRight.setPower(0);
+        }
+        else if ( 0 < Math.abs(frPow) && Math.abs(frPow) < 0.4){
+            frontLeft.setPower(0);
+            frontRight.setPower(0);
+            backLeft.setPower(0);
+            backRight.setPower(0);
+        }
+        else if ( 0 < Math.abs(brPow) && Math.abs(brPow) < 0.4){
+            frontLeft.setPower(0);
+            frontRight.setPower(0);
+            backLeft.setPower(0);
+            backRight.setPower(0);
+        }
+        else if ( 0 < Math.abs(blPow) && Math.abs(blPow) < 0.4){
+            frontLeft.setPower(0);
+            frontRight.setPower(0);
+            backLeft.setPower(0);
+            backRight.setPower(0);
+        }
+        else{
+            frontLeft.setPower(flPow);
+            frontRight.setPower(frPow);
+            backLeft.setPower(blPow);
+            backRight.setPower(brPow);
+        }
+    */
+
+
+
     }
 }
