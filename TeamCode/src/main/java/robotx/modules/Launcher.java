@@ -13,7 +13,7 @@ public class Launcher extends XModule {
 
     double launcherPower = 0.8;
     public double powerShotPower = 0.9;
-
+    public double powerShot = 0.7;
     boolean launcherOn = false;
 
     public Launcher(OpMode op) {
@@ -46,7 +46,7 @@ public class Launcher extends XModule {
         }
 
         else if (xGamepad2().left_stick_button.isDown()) {
-            launcherMotor.setPower(powerShotPower);
+            launcherMotor.setPower(powerShot);
         }
 
         if (xGamepad2().right_bumper.wasPressed()) {
