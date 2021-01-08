@@ -70,7 +70,8 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             StrafeRight(0.6, 1000);
             StopDriving();
             sleep(250);
-            DriveBackward(0.6, 1015);
+            DriveBackward(0.6, 990);
+            DriveBackward(0.3, 50 );
             StopDriving();
             sleep(750);
             PowerShot(2000);
@@ -183,6 +184,17 @@ public class RobotXAutonomous2021 extends LinearOpMode {
     }
 
     public void StopDriving() {
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+    }
+    public void SlowDownBack(double power, int time){
+        mecanumDrive.frontLeft.setPower(-.3);
+        mecanumDrive.frontRight.setPower(-.3);
+        mecanumDrive.backRight.setPower(-.3);
+        mecanumDrive.backLeft.setPower(-.3);
+        sleep(time);
         mecanumDrive.frontLeft.setPower(0);
         mecanumDrive.frontRight.setPower(0);
         mecanumDrive.backLeft.setPower(0);
