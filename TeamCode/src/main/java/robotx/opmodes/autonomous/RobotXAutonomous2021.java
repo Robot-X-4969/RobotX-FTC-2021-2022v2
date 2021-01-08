@@ -67,7 +67,7 @@ public class RobotXAutonomous2021 extends LinearOpMode {
         if (opModeIsActive()) {
             //Movement
 
-            StrafeRight(0.6, 1000);
+            StrafeRight(0.6, 975);
             StopDriving();
             sleep(250);
             DriveBackward(0.6, 990);
@@ -87,7 +87,7 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             sleep(250);
             launcher.launcherServo.setPosition(0.95);
             sleep(250);
-            StrafeLeft(0.6, 290);
+            StrafeLeft(0.6, 370     );
             StopDriving();
             sleep(750);
             PowerShot(2000);
@@ -97,24 +97,34 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             sleep(250);
             DriveBackward(0.6, 450);
             StopDriving();
-            sleep(15000);
+            sleep(250);
+            DriveBackward(0.6,350);
+            StopDriving();
+            sleep(250);
+            StrafeLeft(1.0, 400);
+            StrafeRight(1.0,400);
+            StopDriving();
+            sleep(250);
+            DriveForward(0.6,400);
+            sleep(10000);
+
 
         }
     }
 
 
         //Controls
-        public void DriveForward(double power, int time) {
-            mecanumDrive.frontLeft.setPower(-power);
-            mecanumDrive.frontRight.setPower(-power);
-            mecanumDrive.backLeft.setPower(-power);
-            mecanumDrive.backRight.setPower(-power);
-            sleep(time);
-            mecanumDrive.frontLeft.setPower(0);
-            mecanumDrive.frontRight.setPower(0);
-            mecanumDrive.backLeft.setPower(0);
-            mecanumDrive.backRight.setPower(0);
-        }
+     public void DriveForward(double power, int time) {
+        mecanumDrive.frontLeft.setPower(-power);
+        mecanumDrive.frontRight.setPower(-power);
+        mecanumDrive.backLeft.setPower(-power);
+        mecanumDrive.backRight.setPower(-power);
+        sleep(time);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+    }
 
     public void DriveBackward(double power, int time) {
         mecanumDrive.frontLeft.setPower(power);

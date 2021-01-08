@@ -33,11 +33,11 @@ public class
 
     public void clawServo() {
         if (clawOpen == false) {
-            clawServo.setPosition(0.749);
+            clawServo.setPosition(0.8);
             clawOpen = true;
         }
         else {
-            clawServo.setPosition(0.38);
+            clawServo.setPosition(0.42);
             clawOpen = false;
         }
     }
@@ -56,15 +56,15 @@ public class
         }
 
         if (xGamepad2().a.isDown()) {
-            liftServo.setPosition(0.07);
+            liftServo.setPosition(0.406);
         }
 
         else if (xGamepad2().b.isDown()) {
-            liftServo.setPosition(0.142);
+            liftServo.setPosition(0.34);
         }
 
         else {
-            liftServo.setPosition(0.224);
+            liftServo.setPosition(0.232);
         }
 
         if (xGamepad2().dpad_left.wasPressed()) {
