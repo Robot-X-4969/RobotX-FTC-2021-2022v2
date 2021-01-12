@@ -1,3 +1,4 @@
+
 package robotx.opmodes.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
@@ -16,33 +17,32 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-import robotx.libraries.XOpMode;
 import robotx.modules.MecanumDrive;
 import robotx.modules.IntakeSystem;
 import robotx.modules.Launcher;
 
 
 
-    /*
-     * Copyright (c) 2020 OpenFTC Team
-     *
-     * Permission is hereby granted, free of charge, to any person obtaining a copy
-     * of this software and associated documentation files (the "Software"), to deal
-     * in the Software without restriction, including without limitation the rights
-     * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-     * copies of the Software, and to permit persons to whom the Software is
-     * furnished to do so, subject to the following conditions:
-     *
-     * The above copyright notice and this permission notice shall be included in all
-     * copies or substantial portions of the Software.
-     * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-     * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-     * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-     * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-     * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-     * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-     * SOFTWARE.
-     */
+/*
+ * Copyright (c) 2020 OpenFTC Team
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
 
 
 
@@ -112,6 +112,7 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
         /*
          * An enum to define the skystone position
          */
+
         public enum RingPosition {
             FOUR,
             ONE,
@@ -121,13 +122,13 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
         /*
          * Some color constants
          */
-        static final Scalar BLUE = new Scalar(0, 0, 255);
-        static final Scalar GREEN = new Scalar(0, 255, 0);
+        final Scalar BLUE = new Scalar(0, 0, 255);
+        final Scalar GREEN = new Scalar(0, 255, 0);
 
         /*
          * The core values which define the location and size of the sample regions
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(-827, 98);
+        final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(100, 98);
 
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;
@@ -151,7 +152,7 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
         int avg1;
 
         // Volatile since accessed by OpMode thread w/o synchronization
-        private volatile RingPosition position = RingPosition.FOUR;
+        public volatile RingPosition position = RingPosition.FOUR;
 
         /*
          * This function takes the RGB frame, converts to YCrCb,
@@ -200,19 +201,9 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
 
             return input;
 
-            if (position == RingPosition.FOUR) {
-                StrafeRight(0.6,500);
-                DriveForward(0.6,2500);
-
-            } else if (position == RingPosition.ONE) {
-
-
-            } else (position == RingPosition.NONE) {
 
 
 
-
-            }
 
         }
 
@@ -224,21 +215,32 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
 
 
 
+    }
+
+    public final class boop <position> extends SkystoneDeterminationPipeline {
 
 
+        {
 
+            {
+                if (position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
 
+                    DriveForward(500, 500);
+
+                } else if (position == SkystoneDeterminationPipeline.RingPosition.ONE) {
+
+                    StrafeLeft(500,500);
+
+                } else {
+
+                    StrafeRight(500,500);
+
+                }
+            }
         }
     }
-
-
-
-
-
-
-
     //Controls
-    public void DriveForward(double power, int time) {
+    public final void DriveForward(double power, int time) {
         mecanumDrive.frontLeft.setPower(-power);
         mecanumDrive.frontRight.setPower(-power);
         mecanumDrive.backLeft.setPower(-power);
@@ -250,7 +252,7 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
         mecanumDrive.backRight.setPower(0);
     }
 
-    public void DriveBackward(double power, int time) {
+    public final void DriveBackward(double power, int time) {
         mecanumDrive.frontLeft.setPower(power);
         mecanumDrive.frontRight.setPower(power);
         mecanumDrive.backLeft.setPower(power);
@@ -262,7 +264,7 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
         mecanumDrive.backRight.setPower(0);
     }
 
-    public void StrafeLeft(double power, int time) {
+    public final void StrafeLeft(double power, int time) {
         mecanumDrive.frontLeft.setPower(power);
         mecanumDrive.frontRight.setPower(-power);
         mecanumDrive.backLeft.setPower(-power);
@@ -274,7 +276,7 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
         mecanumDrive.backRight.setPower(0);
     }
 
-    public void StrafeRight(double power, int time) {
+    public final  void StrafeRight(double power, int time) {
         mecanumDrive.frontLeft.setPower(-power);
         mecanumDrive.frontRight.setPower(power);
         mecanumDrive.backLeft.setPower(power);
@@ -286,7 +288,7 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
         mecanumDrive.backRight.setPower(0);
     }
 
-    public void TurnLeft(double power, int time) {
+    public final void TurnLeft(double power, int time) {
         mecanumDrive.frontLeft.setPower(-power);
         mecanumDrive.frontRight.setPower(power);
         mecanumDrive.backLeft.setPower(-power);
@@ -298,7 +300,7 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
         mecanumDrive.backRight.setPower(0);
     }
 
-    public void TurnRight(double power, int time) {
+    public final void TurnRight(double power, int time) {
         mecanumDrive.frontLeft.setPower(power);
         mecanumDrive.frontRight.setPower(-power);
         mecanumDrive.backLeft.setPower(power);
@@ -310,7 +312,7 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
         mecanumDrive.backRight.setPower(0);
     }
 
-    public void PowerShot(int time) {
+    public final void PowerShot(int time) {
         launcher.launcherMotor.setPower(launcher.powerShotPower);
         launcher.launcherServo.setPosition(0.735);
         sleep(time);
