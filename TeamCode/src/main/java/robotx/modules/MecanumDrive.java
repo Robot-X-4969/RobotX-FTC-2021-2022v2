@@ -57,7 +57,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 
-public class MecanumDrive extends XModule{
+public final class MecanumDrive extends XModule{
 
     public DcMotor frontLeft;
     public DcMotor frontRight;

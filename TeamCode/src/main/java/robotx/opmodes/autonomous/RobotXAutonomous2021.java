@@ -1,19 +1,10 @@
 
  package robotx.opmodes.autonomous;
 
-import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.CRServo;
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.util.ElapsedTime;
 
-import robotx.libraries.XOpMode;
 import robotx.modules.MecanumDrive;
 import robotx.modules.IntakeSystem;
 import robotx.modules.Launcher;
@@ -30,10 +21,11 @@ public class RobotXAutonomous2021 extends LinearOpMode {
     MecanumDrive mecanumDrive;
     IntakeSystem intakeSystem;
     Launcher launcher;
+    OpencvAuton opencvAuton;
 
+@Override
 
-    @Override
-    public void runOpMode() {
+    public void runOpMode () {
 
         //Text at bottom of phone
         telemetry.addData("Status", "Initialized");
@@ -48,10 +40,14 @@ public class RobotXAutonomous2021 extends LinearOpMode {
         launcher = new Launcher(this);
         launcher.init();
 
+        opencvAuton = new OpencvAuton();
+        opencvAuton.init();
+
 
         mecanumDrive.start();
         intakeSystem.start();
         launcher.start();
+        opencvAuton.start();
 
         mecanumDrive.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mecanumDrive.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -109,6 +105,9 @@ public class RobotXAutonomous2021 extends LinearOpMode {
 
 
         }
+
+
+
     }
 
 

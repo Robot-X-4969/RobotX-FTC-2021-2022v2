@@ -1,6 +1,7 @@
 
 package robotx.opmodes.autonomous;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -17,6 +18,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
+import robotx.libraries.XModule;
 import robotx.modules.MecanumDrive;
 import robotx.modules.IntakeSystem;
 import robotx.modules.Launcher;
@@ -45,9 +47,8 @@ import robotx.modules.Launcher;
  */
 
 
+@Autonomous
 
-
-@TeleOp
 public class OpencvAuton<position, ringposition> extends LinearOpMode {
     OpenCvInternalCamera phoneCam;
     SkystoneDeterminationPipeline pipeline;
@@ -217,29 +218,30 @@ public class OpencvAuton<position, ringposition> extends LinearOpMode {
 
     }
 
-    public final class boop <position> extends SkystoneDeterminationPipeline {
+    public final class boop extends SkystoneDeterminationPipeline {
 
 
         {
 
             {
-                if (position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
+                if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR) {
 
-                    DriveForward(500, 500);
+                    DriveForward(0.6, 500);
 
-                } else if (position == SkystoneDeterminationPipeline.RingPosition.ONE) {
+                } else if (pipeline.position == SkystoneDeterminationPipeline.RingPosition.ONE) {
 
-                    StrafeLeft(500,500);
+                    StrafeLeft(0.6,500);
 
                 } else {
 
-                    StrafeRight(500,500);
+                    StrafeRight(0.6,500);
 
                 }
             }
         }
     }
     //Controls
+
     public final void DriveForward(double power, int time) {
         mecanumDrive.frontLeft.setPower(-power);
         mecanumDrive.frontRight.setPower(-power);
