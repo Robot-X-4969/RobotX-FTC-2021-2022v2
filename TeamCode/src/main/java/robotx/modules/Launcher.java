@@ -11,7 +11,7 @@ public class Launcher extends XModule {
 
     public Servo launcherServo;
 
-    double launcherPower = 0.8;
+    public double launcherPower = 0.8;
     public double powerShotPower = 0.9;
     public double powerShot = 0.7;
     boolean launcherOn = false;

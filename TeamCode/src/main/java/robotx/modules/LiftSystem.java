@@ -9,14 +9,15 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class
- LiftSystem extends XModule {
+LiftSystem extends XModule {
 
     DcMotor liftMotor;
 
     Servo liftServo;
     Servo clawServo;
+    Servo clawServo2;
 
-    double power = 0.7;
+    double power = -0.4;
 
     boolean clawOpen = false;
 
@@ -29,10 +30,11 @@ public class
         liftMotor = opMode.hardwareMap.dcMotor.get("LiftMotor");
         liftServo = opMode.hardwareMap.servo.get("LiftServo");
         clawServo = opMode.hardwareMap.servo.get("ClawServo");
+        clawServo2 = opMode.hardwareMap.servo.get("ClawServo2");
     }
 
     public void clawServo() {
-        if (clawOpen == false) {
+        if(clawOpen == false) {
             clawServo.setPosition(0.8);
             clawOpen = true;
         }
@@ -41,6 +43,16 @@ public class
             clawOpen = false;
         }
     }
+    /*public void clawServo2(){
+        if(clawOpen == false){
+            clawServo2.setPosition(0.1);
+            clawOpen = true;
+        }
+        else{
+            clawServo2.setPosition(0.267);
+            clawOpen = false;
+        }
+    }*/
 
     public void loop() {
         if (xGamepad2().dpad_up.isDown()) {
@@ -56,11 +68,11 @@ public class
         }
 
         if (xGamepad2().a.isDown()) {
-            liftServo.setPosition(0.406);
+            clawServo2.setPosition(0.1);
         }
 
         else if (xGamepad2().b.isDown()) {
-            liftServo.setPosition(0.34);
+            clawServo2.setPosition(0.267);
         }
 
         else {
@@ -73,3 +85,10 @@ public class
 
     }
 }
+//Open: 0.1
+//Close: 0.267
+
+
+
+
+

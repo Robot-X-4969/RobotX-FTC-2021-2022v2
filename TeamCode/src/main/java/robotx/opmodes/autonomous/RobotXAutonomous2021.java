@@ -32,6 +32,8 @@ public class RobotXAutonomous2021 extends LinearOpMode {
     Launcher launcher;
 
 
+
+
     @Override
     public void runOpMode() {
 
@@ -75,7 +77,7 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             sleep(750);
             PowerShot(2000);
             StopDriving();
-            sleep(250);
+            sleep(500);
             launcher.launcherServo.setPosition(0.95);
             sleep(250);
             StrafeLeft(0.6, 290);
@@ -83,7 +85,7 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             sleep(750);
             PowerShot(2000);
             StopDriving();
-            sleep(250);
+            sleep(500);
             launcher.launcherServo.setPosition(0.95);
             sleep(250);
             StrafeLeft(0.6, 370);
@@ -91,12 +93,13 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             sleep(750);
             PowerShot(2000);
             StopDriving();
-            sleep(250);
+            sleep(500);
             launcher.launcherServo.setPosition(0.95);
             sleep(250);
             DriveBackward(0.6, 450);
             StopDriving();
-            sleep(250);
+            sleep(10000);
+            /*
             DriveBackward(0.6,350);
             StopDriving();
             sleep(250);
@@ -106,7 +109,7 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             sleep(250);
             DriveForward(0.6,400);
             sleep(10000);
-
+            */
 
         }
     }
@@ -187,6 +190,13 @@ public class RobotXAutonomous2021 extends LinearOpMode {
 
     public void PowerShot(int time) {
         launcher.launcherMotor.setPower(launcher.powerShotPower);
+        launcher.launcherServo.setPosition(0.735);
+        sleep(time);
+        launcher.launcherMotor.setPower(0);
+    }
+
+    public void SlowerShot(int time) {
+        launcher.launcherMotor.setPower(launcher.launcherPower);
         launcher.launcherServo.setPosition(0.735);
         sleep(time);
         launcher.launcherMotor.setPower(0);

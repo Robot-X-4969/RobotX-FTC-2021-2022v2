@@ -3,7 +3,7 @@ package robotx.libraries;
 import com.qualcomm.robotcore.eventloop.opmode.*;
 
 /**
- * Created by Robot-X Team 4969 on 12/6/2016.
+ * Created by Robot-X Team 4969
  */
 public class AutonomousMovement extends XModule {
 
