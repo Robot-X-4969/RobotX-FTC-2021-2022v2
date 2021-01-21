@@ -1,14 +1,8 @@
-package robotx.opmodes.autonomous;
+package robotx.modules;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import robotx.modules.Launcher;
-import robotx.modules.Opencv;
-import robotx.modules.MecanumDrive;
-import robotx.modules.Opencv.SkystoneDeterminationPipeline;
-
-import static robotx.modules.Opencv.SkystoneDeterminationPipeline.RingPosition.FOUR;
+import robotx.opmodes.autonomous.Opencv;
 
 
 public class OpenCvAuton extends Opencv {
@@ -47,9 +41,6 @@ public class OpenCvAuton extends Opencv {
         //runtime.reset();
 
 
-        if (SkystoneDeterminationPipeline.RingPosition = FOUR) {
-
-
 
 
 
@@ -57,7 +48,7 @@ public class OpenCvAuton extends Opencv {
 
 
 
-}
+
 
     //Controls
     public void DriveForward(double power, int time) {
@@ -132,12 +123,6 @@ public class OpenCvAuton extends Opencv {
         mecanumDrive.backRight.setPower(0);
     }
 
-    public void PowerShot(int time) {
-        launcher.launcherMotor.setPower(launcher.powerShotPower);
-        launcher.launcherServo.setPosition(0.735);
-        sleep(time);
-        launcher.launcherMotor.setPower(0);
-    }
 
     public void StopDriving() {
         mecanumDrive.frontLeft.setPower(0);
@@ -159,4 +144,3 @@ public class OpenCvAuton extends Opencv {
 }
 
 
-}

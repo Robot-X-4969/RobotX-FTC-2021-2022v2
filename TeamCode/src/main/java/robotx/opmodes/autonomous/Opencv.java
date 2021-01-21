@@ -1,6 +1,5 @@
-package robotx.modules;
+package robotx.opmodes.autonomous;
 
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -17,7 +16,10 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-import robotx.opmodes.autonomous.OpenCvAuton;
+import robotx.modules.IntakeSystem;
+import robotx.modules.Launcher;
+import robotx.modules.MecanumDrive;
+import robotx.modules.OpenCvAuton;
 
 
 
