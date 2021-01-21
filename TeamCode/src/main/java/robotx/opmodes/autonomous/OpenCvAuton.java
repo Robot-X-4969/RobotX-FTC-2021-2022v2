@@ -1,51 +1,34 @@
+package robotx.opmodes.autonomous;
 
- package robotx.opmodes.autonomous;
-
-import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import robotx.modules.MecanumDrive;
-import robotx.modules.IntakeSystem;
 import robotx.modules.Launcher;
+import robotx.modules.Opencv;
+import robotx.modules.MecanumDrive;
 
-import static java.lang.Thread.sleep;
+import static robotx.modules.Opencv.SkystoneDeterminationPipeline.RingPosition.FOUR;
 
-@Autonomous(name = "RobotXAutonomous2021", group = "Default")
 
-public class RobotXAutonomous2021 extends LinearOpMode {
+public class OpenCvAuton extends LinearOpMode {
 
-    //private ElapsedTime runtime = new ElapsedTime();
+    //modules being imported
 
-    //Modules being imported
+    Opencv opencv;
     MecanumDrive mecanumDrive;
-    IntakeSystem intakeSystem;
-    Launcher launcher;
 
 
-@Override
+    public void runOpMode() {
 
-    public void runOpMode () {
-
-        //Text at bottom of phone
-        telemetry.addData("Status", "Initialized");
-        telemetry.update();
 
         mecanumDrive = new MecanumDrive(this);
+        opencv = new Opencv(this)  ;
+
+        opencv.init();
         mecanumDrive.init();
 
-        intakeSystem = new IntakeSystem(this);
-        intakeSystem.init();
-
-        launcher = new Launcher(this);
-        launcher.init();
-
-
-
+        opencv.start();
         mecanumDrive.start();
-        intakeSystem.start();
-        launcher.start();
-
 
         mecanumDrive.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         mecanumDrive.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -58,59 +41,22 @@ public class RobotXAutonomous2021 extends LinearOpMode {
         waitForStart();
         //runtime.reset();
 
-        if (opModeIsActive()) {
-            //Movement
 
-            StrafeRight(0.6, 975);
-            StopDriving();
-            sleep(250);
-            DriveBackward(0.6, 1015);
-            StopDriving();
-            sleep(750);
-            PowerShot(2000);
-            StopDriving();
-            sleep(250);
-            launcher.launcherServo.setPosition(0.95);
-            sleep(250);
-            StrafeLeft(0.6, 290);
-            StopDriving();
-            sleep(750);
-            PowerShot(2000);
-            StopDriving();
-            sleep(250);
-            launcher.launcherServo.setPosition(0.95);
-            sleep(250);
-            StrafeLeft(0.6, 370);
-            StopDriving();
-            sleep(750);
-            PowerShot(2000);
-            StopDriving();
-            sleep(250);
-            launcher.launcherServo.setPosition(0.95);
-            sleep(250);
-            DriveBackward(0.6, 450);
-            StopDriving();
-            sleep(250);
-            DriveBackward(0.6,350);
-            StopDriving();
-            sleep(250);
-            StrafeLeft(1.0, 400);
-            StrafeRight(1.0,400);
-            StopDriving();
-            sleep(250);
-            DriveForward(0.6,400);
-            sleep(10000);
+        if (Opencv.SkystoneDeterminationPipeline.RingPosition == FOUR) {
 
-
-        }
+                DriveForward(0.6,100);
+                
 
 
 
     }
 
 
-        //Controls
-     public void DriveForward(double power, int time) {
+
+}
+
+    //Controls
+    public void DriveForward(double power, int time) {
         mecanumDrive.frontLeft.setPower(-power);
         mecanumDrive.frontRight.setPower(-power);
         mecanumDrive.backLeft.setPower(-power);
@@ -206,4 +152,7 @@ public class RobotXAutonomous2021 extends LinearOpMode {
         mecanumDrive.backLeft.setPower(0);
         mecanumDrive.backRight.setPower(0);
     }
+}
+
+
 }
