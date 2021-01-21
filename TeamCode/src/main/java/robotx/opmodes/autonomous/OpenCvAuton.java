@@ -6,16 +6,21 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import robotx.modules.Launcher;
 import robotx.modules.Opencv;
 import robotx.modules.MecanumDrive;
+import robotx.modules.Opencv.SkystoneDeterminationPipeline;
 
 import static robotx.modules.Opencv.SkystoneDeterminationPipeline.RingPosition.FOUR;
 
 
-public class OpenCvAuton extends LinearOpMode {
+public class OpenCvAuton extends Opencv {
 
     //modules being imported
 
     Opencv opencv;
     MecanumDrive mecanumDrive;
+
+    public OpenCvAuton(OpenCvAuton openCvAuton) {
+        super(openCvAuton);
+    }
 
 
     public void runOpMode() {
@@ -42,10 +47,9 @@ public class OpenCvAuton extends LinearOpMode {
         //runtime.reset();
 
 
-        if (Opencv.SkystoneDeterminationPipeline.RingPosition == FOUR) {
+        if (SkystoneDeterminationPipeline.RingPosition = FOUR) {
 
-                DriveForward(0.6,100);
-                
+
 
 
 

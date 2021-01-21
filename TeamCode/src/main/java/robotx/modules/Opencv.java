@@ -2,6 +2,7 @@ package robotx.modules;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 
 import org.opencv.core.Core;
@@ -44,7 +45,7 @@ import robotx.opmodes.autonomous.OpenCvAuton;
      */
 
 
-    @Autonomous
+    @TeleOp
 
     public class Opencv<position, ringposition> extends LinearOpMode {
         OpenCvInternalCamera phoneCam;
@@ -110,7 +111,6 @@ import robotx.opmodes.autonomous.OpenCvAuton;
         }
 
         public static class SkystoneDeterminationPipeline extends OpenCvPipeline {
-            public static Object RingPosition;
             /*
              * An enum to define the skystone position
              */
