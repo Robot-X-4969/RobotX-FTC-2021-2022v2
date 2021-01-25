@@ -1,8 +1,9 @@
-package robotx.modules;
+package robotx.opmodes.autonomous;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import robotx.opmodes.autonomous.Opencv;
+import robotx.modules.MecanumDrive;
+import robotx.modules.Opencv;
 
 
 public class OpenCvAuton extends Opencv {
@@ -29,10 +30,7 @@ public class OpenCvAuton extends Opencv {
         opencv.start();
         mecanumDrive.start();
 
-        mecanumDrive.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        mecanumDrive.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        mecanumDrive.backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        mecanumDrive.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
         telemetry.addData(">", "Press Play to Start Op Mode");
         telemetry.update();
@@ -40,9 +38,9 @@ public class OpenCvAuton extends Opencv {
         waitForStart();
         //runtime.reset();
 
-
-
-
+        if(SkystoneDeterminationPipeline.RingPosition.FOUR == true) {
+            DriveForward(0.6, 100);
+        }
 
     }
 
@@ -141,6 +139,9 @@ public class OpenCvAuton extends Opencv {
         mecanumDrive.backLeft.setPower(0);
         mecanumDrive.backRight.setPower(0);
     }
+
+
+
 }
 
 

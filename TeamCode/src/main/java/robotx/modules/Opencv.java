@@ -1,4 +1,4 @@
-package robotx.opmodes.autonomous;
+package robotx.modules;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -16,10 +16,7 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-import robotx.modules.IntakeSystem;
-import robotx.modules.Launcher;
-import robotx.modules.MecanumDrive;
-import robotx.modules.OpenCvAuton;
+import robotx.opmodes.autonomous.OpenCvAuton;
 
 
 
@@ -49,15 +46,13 @@ import robotx.modules.OpenCvAuton;
 
     @TeleOp
 
-    public class Opencv<position, ringposition> extends LinearOpMode {
+    public class Opencv<Position, RingPosition> extends LinearOpMode {
         OpenCvInternalCamera phoneCam;
         SkystoneDeterminationPipeline pipeline;
         MecanumDrive mecanumDrive;
         IntakeSystem intakeSystem;
         Launcher launcher;
 
-        public Opencv(OpenCvAuton openCvAuton) {
-        }
 
 
         @Override
@@ -92,6 +87,8 @@ import robotx.modules.OpenCvAuton;
             // out when the RC activity is in portrait. We do our actual image processing assuming
             // landscape orientation, though.
             phoneCam.setViewportRenderingPolicy(OpenCvCamera.ViewportRenderingPolicy.OPTIMIZE_VIEW);
+
+
 
             phoneCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
                 @Override
