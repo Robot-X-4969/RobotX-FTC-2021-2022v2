@@ -13,9 +13,7 @@ public class OpenCvAuton extends Opencv {
     Opencv opencv;
     MecanumDrive mecanumDrive;
 
-    public OpenCvAuton(OpenCvAuton openCvAuton) {
-        super(openCvAuton);
-    }
+
 
 
     public void runOpMode() {
@@ -38,9 +36,7 @@ public class OpenCvAuton extends Opencv {
         waitForStart();
         //runtime.reset();
 
-        if(SkystoneDeterminationPipeline.RingPosition.FOUR == true) {
-            DriveForward(0.6, 100);
-        }
+
 
     }
 
