@@ -11,11 +11,11 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class
 LiftSystem extends XModule {
 
-    DcMotor liftMotor;
+    public DcMotor liftMotor;
 
     Servo liftServo;
-    Servo clawServo;
-    Servo clawServo2;
+    public Servo clawServo;
+    public Servo clawServo2;
 
     double power = -0.4;
 
@@ -43,7 +43,7 @@ LiftSystem extends XModule {
             clawOpen = false;
         }
     }
-    /*public void clawServo2(){
+    public void clawServo2() {
         if(clawOpen == false){
             clawServo2.setPosition(0.1);
             clawOpen = true;
@@ -52,7 +52,7 @@ LiftSystem extends XModule {
             clawServo2.setPosition(0.267);
             clawOpen = false;
         }
-    }*/
+    }
 
     public void loop() {
         if (xGamepad2().dpad_up.isDown()) {

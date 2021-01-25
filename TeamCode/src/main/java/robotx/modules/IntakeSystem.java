@@ -23,11 +23,11 @@ public class IntakeSystem extends XModule {
 
     public void loop() {
         if (xGamepad2().x.isDown()) {
-            intakeMotor.setPower(-power);
+            intakeMotor.setPower(power);
         }
 
         else if (xGamepad2().y.isDown()) {
-            intakeMotor.setPower(power);
+            intakeMotor.setPower(-power);
         }
 
         else {
