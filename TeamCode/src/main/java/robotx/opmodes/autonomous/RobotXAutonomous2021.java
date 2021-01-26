@@ -1,12 +1,11 @@
 
  package robotx.opmodes.autonomous;
 
-<<<<<<< HEAD
+
 import android.graphics.RenderNode;
 
 import com.qualcomm.robotcore.eventloop.opmode.*;
-=======
->>>>>>> 4a1fede2e7fa08f582d7ba258774d8c019efc52d
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;

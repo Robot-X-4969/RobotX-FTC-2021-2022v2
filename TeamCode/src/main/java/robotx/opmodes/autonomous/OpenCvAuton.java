@@ -20,7 +20,7 @@ public class OpenCvAuton extends Opencv {
 
 
         mecanumDrive = new MecanumDrive(this);
-        opencv = new Opencv(this)  ;
+         ;
 
         opencv.init();
         mecanumDrive.init();

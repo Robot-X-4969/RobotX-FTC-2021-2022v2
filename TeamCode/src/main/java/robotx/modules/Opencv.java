@@ -110,7 +110,7 @@ import robotx.opmodes.autonomous.OpenCvAuton;
 
 
             while (opModeIsActive()){
-                if(pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR){
+                if(pipeline.position ==SkystoneDeterminationPipeline.RingPosition.FOUR){
                     DriveBackward(0.6,500);
                 }
             }
@@ -220,7 +220,7 @@ import robotx.opmodes.autonomous.OpenCvAuton;
 
         }
 
-    
+
 
         //Controls
         public void DriveForward(double power, int time) {
