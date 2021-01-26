@@ -46,7 +46,7 @@ import robotx.opmodes.autonomous.OpenCvAuton;
 
     @TeleOp
 
-    public class Opencv<Position, RingPosition> extends LinearOpMode {
+    public class Opencv<Position, RingPosition, string> extends LinearOpMode {
         OpenCvInternalCamera phoneCam;
         SkystoneDeterminationPipeline pipeline;
         MecanumDrive mecanumDrive;
@@ -108,9 +108,9 @@ import robotx.opmodes.autonomous.OpenCvAuton;
                 sleep(50);
             }
 
-
+            string FOUR = (string) "FOUR";
             while (opModeIsActive()){
-                if(pipeline.position ==SkystoneDeterminationPipeline.RingPosition.FOUR){
+                if(pipeline.position == FOUR){
                     DriveBackward(0.6,500);
                 }
             }
