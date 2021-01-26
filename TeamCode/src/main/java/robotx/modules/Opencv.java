@@ -108,11 +108,22 @@ import robotx.opmodes.autonomous.OpenCvAuton;
                 sleep(50);
             }
 
-            string FOUR = (string) "FOUR";
+            final int FOUR_RING_THRESHOLD = 150;
+            final int ONE_RING_THRESHOLD = 135;
+
             while (opModeIsActive()){
-                if(pipeline.position == FOUR){
+                if(pipeline.getAnalysis() > FOUR_RING_THRESHOLD){
                     DriveBackward(0.6,500);
+                    telemetry.addData("yes","wazoo");
+                }else if (pipeline.getAnalysis() > ONE_RING_THRESHOLD){
+                    DriveForward(0.6,500);
+                    telemetry.addData("yes","wazoo");
+                } else{
+                    StrafeLeft(0.6,500);
+                    telemetry.addData("yes","wazoo");
                 }
+
+
             }
         }
 
