@@ -16,8 +16,6 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-import robotx.opmodes.autonomous.OpenCvAuton;
-
 
 
 
