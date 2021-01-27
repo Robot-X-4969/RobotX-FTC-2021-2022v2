@@ -1,8 +1,9 @@
-package robotx.modules;
+package robotx.opmodes.autonomous;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 
-import robotx.opmodes.autonomous.Opencv;
+import robotx.modules.MecanumDrive;
+import robotx.modules.Opencv;
 
 
 public class OpenCvAuton extends Opencv {
@@ -12,16 +13,14 @@ public class OpenCvAuton extends Opencv {
     Opencv opencv;
     MecanumDrive mecanumDrive;
 
-    public OpenCvAuton(OpenCvAuton openCvAuton) {
-        super(openCvAuton);
-    }
+
 
 
     public void runOpMode() {
 
 
         mecanumDrive = new MecanumDrive(this);
-        opencv = new Opencv(this)  ;
+         ;
 
         opencv.init();
         mecanumDrive.init();
@@ -29,18 +28,13 @@ public class OpenCvAuton extends Opencv {
         opencv.start();
         mecanumDrive.start();
 
-        mecanumDrive.frontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        mecanumDrive.frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        mecanumDrive.backLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        mecanumDrive.backRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+
 
         telemetry.addData(">", "Press Play to Start Op Mode");
         telemetry.update();
 
         waitForStart();
         //runtime.reset();
-
-
 
 
 
@@ -141,6 +135,9 @@ public class OpenCvAuton extends Opencv {
         mecanumDrive.backLeft.setPower(0);
         mecanumDrive.backRight.setPower(0);
     }
+
+
+
 }
 
 
