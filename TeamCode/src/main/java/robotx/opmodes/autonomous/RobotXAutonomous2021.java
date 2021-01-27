@@ -82,11 +82,11 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             DriveBackward(0.6, 1015);
             StopDriving();
             sleep(750);
-<<<<<<< HEAD
+
             PowerShot2(1400, 500);
-=======
+
             PowerShot(1500, 500);
->>>>>>> c71b1010f31978e222252b3ca6346e5d25e04b9b
+
             StopDriving();
             sleep(500);
             launcher.launcherServo.setPosition(0.95);
