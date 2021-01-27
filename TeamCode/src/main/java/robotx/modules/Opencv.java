@@ -106,16 +106,17 @@ import org.openftc.easyopencv.OpenCvPipeline;
                 sleep(50);
             }
 
+            final string four = (string) "FOUR";
             final int FOUR_RING_THRESHOLD = 150;
             final int ONE_RING_THRESHOLD = 135;
 
             while (opModeIsActive()){
-                if(pipeline.getAnalysis() > FOUR_RING_THRESHOLD){
+                if(pipeline.position == SkystoneDeterminationPipeline.RingPosition.FOUR){
                     DriveBackward(0.6,500);
                     telemetry.addData("yes","wazoo");
-                }else if (pipeline.getAnalysis() > ONE_RING_THRESHOLD){
+                }else if (pipeline.position == four){
                     DriveForward(0.6,500);
-                    telemetry.addData("yes","wazoo");
+                    telemetry.addData("yes2","wazoo");
                 } else{
                     StrafeLeft(0.6,500);
                     telemetry.addData("yes","wazoo");
