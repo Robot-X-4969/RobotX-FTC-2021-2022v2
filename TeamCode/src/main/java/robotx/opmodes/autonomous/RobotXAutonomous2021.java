@@ -94,7 +94,7 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             StrafeLeft(0.6, 290);
             StopDriving();
             sleep(750);
-            PowerShot2(1400, 500);
+            PowerShot2(1300, 500);
             StopDriving();
             sleep(500);
             launcher.launcherServo.setPosition(0.95);
