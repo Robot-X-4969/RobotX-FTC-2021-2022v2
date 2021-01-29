@@ -73,7 +73,7 @@ public class XGamepad {
         back.update(gamepad.back);
         left_bumper.update(gamepad.left_bumper);
         right_bumper.update(gamepad.right_bumper);
-       // left_trigger.update(gamepad.left_trigger);
+        //left_trigger.update(gamepad.left_trigger);
        // right_trigger.update(gamepad.right_trigger);
         left_stick_button.update(gamepad.left_stick_button);
         right_stick_button.update(gamepad.right_stick_button);
