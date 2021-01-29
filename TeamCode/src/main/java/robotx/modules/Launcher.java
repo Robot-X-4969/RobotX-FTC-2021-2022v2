@@ -56,12 +56,12 @@ public class Launcher extends XModule {
         else if (xGamepad2().left_bumper.wasPressed()) {
             launcherServo.setPosition(0.9);
         }
-        if (xGamepad2().right_trigger.wasPressed()) {
-            launcherServo.setPosition(0.75);
+        if (xGamepad2().right_trigger > 0.5) {
+           pushServo.setPosition(0.222);
         }
 
-        else if (xGamepad2().left_trigger.wasPressed()) {
-            launcherServo.setPosition(0.9);
+        else if (xGamepad2().left_trigger > 0.5) {
+            pushServo.setPosition(0);
         }
     }
 }
