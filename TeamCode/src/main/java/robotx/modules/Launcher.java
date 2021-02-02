@@ -10,9 +10,9 @@ public class Launcher extends XModule {
     public DcMotor launcherMotor;
 
     public Servo launcherServo;
-
+    //public Servo pushServo;
     public double launcherPower = 0.8;
-    public double powerShotPower = 0.9;
+    public double powerShot2 = 0.65;
     public double powerShot = 0.7;
     boolean launcherOn = false;
 
@@ -50,11 +50,20 @@ public class Launcher extends XModule {
         }
 
         if (xGamepad2().right_bumper.wasPressed()) {
-            launcherServo.setPosition(0.735);
+            launcherServo.setPosition(0.75);
         }
 
         else if (xGamepad2().left_bumper.wasPressed()) {
-            launcherServo.setPosition(0.95);
+            launcherServo.setPosition(0.9);
         }
+      /*  if (xGamepad2().right_trigger > 0.5) {
+           pushServo.setPosition(0.222);
+        }
+
+        else if (xGamepad2().left_trigger > 0.5) {
+            pushServo.setPosition(0);
+        }
+        */
+
     }
 }

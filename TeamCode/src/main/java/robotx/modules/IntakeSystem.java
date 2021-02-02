@@ -6,12 +6,17 @@ import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.I2cAddr;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.Servo;
 
 public class IntakeSystem extends XModule {
 
     DcMotor intakeMotor;
 
+    Servo adjustServo;
+
     double power = 0.8;
+
+    boolean adjusted = false;
 
     public IntakeSystem (OpMode op) {
         super(op);
@@ -19,6 +24,20 @@ public class IntakeSystem extends XModule {
 
     public void init() {
         intakeMotor = opMode.hardwareMap.dcMotor.get("IntakeMotor");
+        adjustServo = opMode.hardwareMap.servo.get("adjustServo");
+    }
+
+    public void adjustmentServo() {
+        if (!adjusted) {
+
+            adjustServo.setPosition(0);
+            adjusted = true;
+        }
+        else {
+
+            adjustServo.setPosition(0.22);
+            adjusted = false;
+        }
     }
 
     public void loop() {
@@ -32,6 +51,10 @@ public class IntakeSystem extends XModule {
 
         else {
             intakeMotor.setPower(0.0);
+        }
+
+        if (xGamepad1().a.wasPressed()) {
+            adjustmentServo();
         }
     }
 }

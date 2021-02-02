@@ -73,23 +73,24 @@ public class RobotXAutonomous2021 extends LinearOpMode {
 
         if (opModeIsActive()) {
             //Movement
-            liftSystem.clawServo.setPosition(0.42);
+            liftSystem.clawServo.setPosition(0.38);
+
             sleep(250);
-            StrafeRight(0.6, 975);
+            StrafeRight(0.6, 1025);
             StopDriving();
             sleep(250);
             DriveBackward(0.6, 1015);
             StopDriving();
             sleep(750);
-            PowerShot(1500, 500);
+            PowerShot2(1400, 500);
             StopDriving();
             sleep(500);
             launcher.launcherServo.setPosition(0.95);
             sleep(250);
-            StrafeLeft(0.6, 290);
+            StrafeLeft(0.6, 390);
             StopDriving();
             sleep(750);
-            PowerShot(1500, 500);
+            PowerShot2(1300, 500);
             StopDriving();
             sleep(500);
             launcher.launcherServo.setPosition(0.95);
@@ -97,22 +98,23 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             StrafeLeft(0.6, 370);
             StopDriving();
             sleep(750);
-            PowerShot(1500, 500);
+            PowerShot2(1400, 500);
             StopDriving();
             sleep(500);
             launcher.launcherServo.setPosition(0.95);
             sleep(250);
-            DriveBackward(0.6, 600);
+            DriveBackward(0.6, 800);
             StopDriving();
             sleep(750);
+            StrafeLeft(0.6, 250);
             LiftMotorOpen(0.6, 2000);
             sleep(500);
             liftSystem.clawServo.setPosition(0.8);
             sleep(500);
             liftSystem.clawServo2.setPosition(0.1);
             sleep(1000);
-            LiftMotorOpen(-0.6,2000);
-            DriveForward(0.6,300);
+            //LiftMotorOpen(-0.6,1500);
+            DriveForward(0.6,250);
             sleep(10000);
 
 
@@ -212,9 +214,18 @@ public class RobotXAutonomous2021 extends LinearOpMode {
     }
 
     public void PowerShot(int time, int time2) {
-        launcher.launcherMotor.setPower(launcher.powerShotPower);
+        launcher.launcherMotor.setPower(launcher.powerShot);
         sleep(time);
-        launcher.launcherMotor.setPower(launcher.powerShotPower);
+        launcher.launcherMotor.setPower(launcher.powerShot);
+        launcher.launcherServo.setPosition(0.735);
+        sleep(time2);
+        launcher.launcherMotor.setPower(0);
+    }
+
+    public void PowerShot2(int time, int time2) {
+        launcher.launcherMotor.setPower(launcher.powerShot2);
+        sleep(time);
+        launcher.launcherMotor.setPower(launcher.powerShot2);
         launcher.launcherServo.setPosition(0.735);
         sleep(time2);
         launcher.launcherMotor.setPower(0);

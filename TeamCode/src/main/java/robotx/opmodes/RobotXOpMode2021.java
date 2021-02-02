@@ -67,5 +67,5 @@ GamePad 2:
 - dpad_left: Claw servo raises/lowers
 - dpad_right: Turns launcher on/off
 - left_stick_button: Power shot
-- right_trigger: shoots ring
+-
  */
