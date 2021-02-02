@@ -125,6 +125,7 @@ import robotx.opmodes.autonomous.OpenCvAuton;
 
 
             }
+
         }
 
         public static class SkystoneDeterminationPipeline extends OpenCvPipeline {
