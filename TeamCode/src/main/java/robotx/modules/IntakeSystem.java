@@ -2,10 +2,7 @@ package robotx.modules;
 
 import robotx.libraries.XModule;
 
-import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.I2cAddr;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
 
 public class IntakeSystem extends XModule {
@@ -18,7 +15,7 @@ public class IntakeSystem extends XModule {
 
     boolean adjusted = false;
 
-    public IntakeSystem (OpMode op) {
+    public IntakeSystem (Opencv op) {
         super(op);
     }
 
