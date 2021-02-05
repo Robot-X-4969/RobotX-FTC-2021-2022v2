@@ -1,35 +1,3 @@
-package robotx.modules;
-
-
-
-
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
-
-import org.opencv.core.Core;
-import org.opencv.core.Mat;
-import org.opencv.core.Point;
-import org.opencv.core.Rect;
-import org.opencv.core.Scalar;
-import org.opencv.imgproc.Imgproc;
-import org.openftc.easyopencv.OpenCvCamera;
-import org.openftc.easyopencv.OpenCvCameraFactory;
-import org.openftc.easyopencv.OpenCvCameraRotation;
-import org.openftc.easyopencv.OpenCvInternalCamera;
-import org.openftc.easyopencv.OpenCvPipeline;
-import robotx.libraries.XModule;
-import com.qualcomm.robotcore.eventloop.opmode.*;
-
-import robotx.modules.MecanumDrive;
-import robotx.modules.IntakeSystem;
-import robotx.modules.Launcher;
-
-
-
-
-
 /*
  * Copyright (c) 2020 OpenFTC Team
  *
@@ -51,25 +19,66 @@ import robotx.modules.Launcher;
  * SOFTWARE.
  */
 
+package robotx.modules;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvInternalCamera;
+import org.openftc.easyopencv.OpenCvPipeline;
+import robotx.libraries.XModule;
+
+import com.qualcomm.robotcore.eventloop.opmode.*;
+
+import robotx.modules.MecanumDrive;
+import robotx.modules.IntakeSystem;
+import robotx.modules.Launcher;
+import robotx.opmodes.autonomous.OpencvAuton;
+
+import static org.firstinspires.ftc.robotcore.external.BlocksOpModeCompanion.hardwareMap;
+
+
+
+import org.opencv.core.Core;
+import org.opencv.core.Mat;
+import org.opencv.core.Point;
+import org.opencv.core.Rect;
+import org.opencv.core.Scalar;
+import org.opencv.imgproc.Imgproc;
+import org.openftc.easyopencv.OpenCvCamera;
+import org.openftc.easyopencv.OpenCvCameraFactory;
+import org.openftc.easyopencv.OpenCvCameraRotation;
+import org.openftc.easyopencv.OpenCvInternalCamera;
+import org.openftc.easyopencv.OpenCvPipeline;
 
 @TeleOp
-
-public final class Opencv extends XModule {
+public class Opencv extends LinearOpMode
+{
     OpenCvInternalCamera phoneCam;
-    robotx.opmodes.autonomous.OpencvAuton.SkystoneDeterminationPipeline pipeline;
+    SkystoneDeterminationPipeline pipeline;
     MecanumDrive mecanumDrive;
     IntakeSystem intakeSystem;
     Launcher launcher;
 
 
 
-    public Opencv(OpMode op){
-        super(op);
-    }
-
-
-    public void runOpMode() {
-
+    @Override
+    public <string> void runOpMode()
+    {
 
         mecanumDrive = new MecanumDrive(this);
         mecanumDrive.init();
@@ -92,7 +101,7 @@ public final class Opencv extends XModule {
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
-        pipeline = new robotx.opmodes.autonomous.OpencvAuton.SkystoneDeterminationPipeline();
+        pipeline = new SkystoneDeterminationPipeline();
         phoneCam.setPipeline(pipeline);
 
         // We set the viewport policy to optimized view so the preview doesn't appear 90 deg
@@ -100,18 +109,19 @@ public final class Opencv extends XModule {
         // landscape orientation, though.
         phoneCam.setViewportRenderingPolicy(OpenCvCamera.ViewportRenderingPolicy.OPTIMIZE_VIEW);
 
-
-
-        phoneCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
+        phoneCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
+        {
             @Override
-            public void onOpened() {
-                phoneCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_LEFT);
+            public void onOpened()
+            {
+                phoneCam.startStreaming(320,240, OpenCvCameraRotation.SIDEWAYS_LEFT);
             }
         });
 
         waitForStart();
 
-        while (opModeIsActive()) {
+        while (opModeIsActive())
+        {
             telemetry.addData("Analysis", pipeline.getAnalysis());
             telemetry.addData("Position", pipeline.position);
             telemetry.update();
@@ -125,7 +135,7 @@ public final class Opencv extends XModule {
         final int ONE_RING_THRESHOLD = 135;
 
         while (opModeIsActive()){
-            if(pipeline.position == robotx.opmodes.autonomous.OpencvAuton.SkystoneDeterminationPipeline.RingPosition.FOUR){
+            if(pipeline.position == OpencvAuton.SkystoneDeterminationPipeline.RingPosition.FOUR){
                 DriveBackward(0.6,500);
                 telemetry.addData("yes","wazoo");
             }else if (pipeline.position == four){
@@ -137,15 +147,16 @@ public final class Opencv extends XModule {
             }
 
 
-        }
-    }
 
-    public static class SkystoneDeterminationPipeline extends OpenCvPipeline {
+        }
+
+    public static class SkystoneDeterminationPipeline extends OpenCvPipeline
+    {
         /*
          * An enum to define the skystone position
          */
-
-        public enum RingPosition {
+        public enum RingPosition
+        {
             FOUR,
             ONE,
             NONE
@@ -154,13 +165,13 @@ public final class Opencv extends XModule {
         /*
          * Some color constants
          */
-        final Scalar BLUE = new Scalar(0, 0, 255);
-        final Scalar GREEN = new Scalar(0, 255, 0);
+        static final Scalar BLUE = new Scalar(0, 0, 255);
+        static final Scalar GREEN = new Scalar(0, 255, 0);
 
         /*
          * The core values which define the location and size of the sample regions
          */
-        final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(100, 98);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(181,98);
 
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;
@@ -184,26 +195,29 @@ public final class Opencv extends XModule {
         int avg1;
 
         // Volatile since accessed by OpMode thread w/o synchronization
-        public volatile robotx.opmodes.autonomous.OpencvAuton.SkystoneDeterminationPipeline.RingPosition position = robotx.opmodes.autonomous.OpencvAuton.SkystoneDeterminationPipeline.RingPosition.FOUR;
+        private volatile RingPosition position = RingPosition.FOUR;
 
         /*
          * This function takes the RGB frame, converts to YCrCb,
          * and extracts the Cb channel to the 'Cb' variable
          */
-        void inputToCb(Mat input) {
+        void inputToCb(Mat input)
+        {
             Imgproc.cvtColor(input, YCrCb, Imgproc.COLOR_RGB2YCrCb);
             Core.extractChannel(YCrCb, Cb, 1);
         }
 
         @Override
-        public void init(Mat firstFrame) {
+        public void init(Mat firstFrame)
+        {
             inputToCb(firstFrame);
 
             region1_Cb = Cb.submat(new Rect(region1_pointA, region1_pointB));
         }
 
         @Override
-        public Mat processFrame(Mat input) {
+        public Mat processFrame(Mat input)
+        {
             inputToCb(input);
 
             avg1 = (int) Core.mean(region1_Cb).val[0];
@@ -215,13 +229,13 @@ public final class Opencv extends XModule {
                     BLUE, // The color the rectangle is drawn in
                     2); // Thickness of the rectangle lines
 
-            position = robotx.opmodes.autonomous.OpencvAuton.SkystoneDeterminationPipeline.RingPosition.FOUR; // Record our analysis
-            if (avg1 > FOUR_RING_THRESHOLD) {
-                position = robotx.opmodes.autonomous.OpencvAuton.SkystoneDeterminationPipeline.RingPosition.FOUR;
-            } else if (avg1 > ONE_RING_THRESHOLD) {
-                position = robotx.opmodes.autonomous.OpencvAuton.SkystoneDeterminationPipeline.RingPosition.ONE;
-            } else {
-                position = robotx.opmodes.autonomous.OpencvAuton.SkystoneDeterminationPipeline.RingPosition.NONE;
+            position = RingPosition.FOUR; // Record our analysis
+            if(avg1 > FOUR_RING_THRESHOLD){
+                position = RingPosition.FOUR;
+            }else if (avg1 > ONE_RING_THRESHOLD){
+                position = RingPosition.ONE;
+            }else{
+                position = RingPosition.NONE;
             }
 
             Imgproc.rectangle(
@@ -232,18 +246,13 @@ public final class Opencv extends XModule {
                     -1); // Negative thickness means solid fill
 
             return input;
-
-
         }
 
-
-        public int getAnalysis() {
+        public int getAnalysis()
+        {
             return avg1;
         }
-
-
     }
-
 
 
     //Controls
