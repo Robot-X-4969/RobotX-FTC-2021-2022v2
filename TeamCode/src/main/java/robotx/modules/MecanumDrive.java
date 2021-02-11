@@ -52,7 +52,6 @@ package robotx.modules;
 
 import robotx.libraries.XModule;
 
-import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
@@ -65,7 +64,7 @@ public final class MecanumDrive extends XModule{
     public DcMotor backRight;
 
 
-    public MecanumDrive(OpMode op){
+    public MecanumDrive(Opencv op){
         super(op);
     }
 

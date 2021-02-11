@@ -1,7 +1,6 @@
 package robotx.modules;
 import robotx.libraries.XModule;
 
-import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
@@ -16,7 +15,7 @@ public class Launcher extends XModule {
     public double powerShot = 0.7;
     boolean launcherOn = false;
 
-    public Launcher(OpMode op) {
+    public Launcher(Opencv op) {
         super(op);
     }
 
