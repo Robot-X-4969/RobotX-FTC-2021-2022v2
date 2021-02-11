@@ -1,4 +1,4 @@
-package robotx.modules;
+ package robotx.modules;
 
 import robotx.libraries.XModule;
 
@@ -38,8 +38,8 @@ public class IntakeSystem extends XModule {
             adjustServo.setPosition(0.22);
             adjusted = false;
         }
-    }
-
+    }0
+0
     public void loop() {
         if (xGamepad2().x.isDown()) {
             intakeMotor.setPower(power);
