@@ -1,5 +1,6 @@
 package robotx.modules;
 import robotx.libraries.XModule;
+import robotx.opmodes.autonomous.RobotXAutonomous2021;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -15,7 +16,7 @@ public class Launcher extends XModule {
     public double powerShot = 0.7;
     boolean launcherOn = false;
 
-    public Launcher(Opencv op) {
+    public Launcher(RobotXAutonomous2021 op) {
         super(op);
     }
 

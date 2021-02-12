@@ -1,6 +1,7 @@
  package robotx.modules;
 
 import robotx.libraries.XModule;
+import robotx.opmodes.autonomous.RobotXAutonomous2021;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
@@ -15,7 +16,7 @@ public class IntakeSystem extends XModule {
 
     boolean adjusted = false;
 
-    public IntakeSystem (Opencv op) {
+    public IntakeSystem (RobotXAutonomous2021 op) {
         super(op);
     }
 
@@ -35,8 +36,8 @@ public class IntakeSystem extends XModule {
             adjustServo.setPosition(0.22);
             adjusted = false;
         }
-    }0
-0
+    }
+
     public void loop() {
         if (xGamepad2().x.isDown()) {
             intakeMotor.setPower(power);
