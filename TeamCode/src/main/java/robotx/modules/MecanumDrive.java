@@ -51,8 +51,8 @@ import robotx.libraries.OmniDriveSystem;
 package robotx.modules;
 
 import robotx.libraries.XModule;
+import robotx.opmodes.autonomous.RobotXAutonomous2021;
 
-import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
@@ -65,7 +65,7 @@ public final class MecanumDrive extends XModule{
     public DcMotor backRight;
 
 
-    public MecanumDrive(OpMode op){
+    public MecanumDrive(RobotXAutonomous2021 op){
         super(op);
     }
 
