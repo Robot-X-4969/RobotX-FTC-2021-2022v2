@@ -1,5 +1,6 @@
 package robotx.modules;
 import robotx.libraries.XModule;
+import robotx.opmodes.RobotXOpMode2021;
 import robotx.opmodes.autonomous.RobotXAutonomous2021;
 
 import com.qualcomm.robotcore.hardware.DcMotor;

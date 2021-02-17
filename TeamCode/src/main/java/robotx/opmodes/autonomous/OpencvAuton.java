@@ -1,16 +1,16 @@
 package robotx.opmodes.autonomous;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-import robotx.modules.Opencv;
 import robotx.modules.MecanumDrive;
-import  robotx.modules.Opencv.SkystoneDeterminationPipeline;
-
+import robotx.modules.Opencv;
 import robotx.modules.Opencv.SkystoneDeterminationPipeline;
 
-import static robotx.modules.Opencv.*;
 import static robotx.modules.Opencv.SkystoneDeterminationPipeline.*;
 
+
+@Autonomous
 
 public class OpencvAuton extends LinearOpMode {
 
@@ -19,7 +19,8 @@ public class OpencvAuton extends LinearOpMode {
     Opencv opencv;
     MecanumDrive mecanumDrive;
 
-    SkystoneDeterminationPipeline obj = new SkystoneDeterminationPipeline();
+    SkystoneDeterminationPipeline skystoneDeterminationPipeline;
+    RingPosition ringPosition;
 
 
 
@@ -28,8 +29,7 @@ public class OpencvAuton extends LinearOpMode {
     public void runOpMode() {
 
 
-
-        opencv.init();
+        
         mecanumDrive.init();
 
 
@@ -46,9 +46,10 @@ public class OpencvAuton extends LinearOpMode {
 
         while (opModeIsActive()) {
 
-            if (obj.RingPosition == RingPosition.FOUR);
+            if (ringPosition == RingPosition.FOUR);
 
-            DriveBackward(0.6,500);
+            telemetry.addData("Wazoo","Yes");
+            DriveForward(0.6,500);
         }
 
 

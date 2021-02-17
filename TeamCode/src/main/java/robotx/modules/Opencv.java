@@ -137,7 +137,7 @@ public class Opencv extends LinearOpMode
             Core.extractChannel(YCrCb, Cb, 1);
         }
 
-        public void init()
+        public void init(Mat firstFrame)
         {
             inputToCb(firstFrame);
 
