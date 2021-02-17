@@ -3,11 +3,10 @@ package robotx.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
-import robotx.modules.MecanumDrive;
-import robotx.modules.IntakeSystem;
 import robotx.modules.ConveyorBelt;
-import robotx.modules.LiftSystem;
+import robotx.modules.IntakeSystem;
 import robotx.modules.Launcher;
+import robotx.modules.LiftSystem;
 import robotx.modules.OrientationDrive;
 
 @TeleOp(name = "RobotXOpMode2021", group = "Default")
@@ -39,8 +38,6 @@ public class RobotXOpMode2021 extends XOpMode {
 
         launcher = new Launcher(this);
         activeModules.add(launcher);
-
-
     }
 
     public void init() {

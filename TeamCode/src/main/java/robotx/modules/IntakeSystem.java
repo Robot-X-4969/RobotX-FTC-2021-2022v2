@@ -1,12 +1,14 @@
-package robotx.modules;
+ package robotx.modules;
 
 import robotx.libraries.XModule;
+import robotx.opmodes.RobotXOpMode2021;
+import robotx.opmodes.autonomous.RobotXAutonomous2021;
 
-import com.qualcomm.robotcore.eventloop.opmode.*;
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.I2cAddr;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.eventloop.opmode.*;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class IntakeSystem extends XModule {
 

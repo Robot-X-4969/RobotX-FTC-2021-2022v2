@@ -124,6 +124,7 @@ import org.openftc.easyopencv.OpenCvPipeline;
 
 
             }
+
         }
 
         public static class SkystoneDeterminationPipeline extends OpenCvPipeline {

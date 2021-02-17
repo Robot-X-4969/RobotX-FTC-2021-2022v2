@@ -74,7 +74,6 @@ public class RobotXAutonomous2021 extends LinearOpMode {
         if (opModeIsActive()) {
             //Movement
             liftSystem.clawServo.setPosition(0.38);
-
             sleep(250);
             StrafeRight(0.6, 1025);
             StopDriving();
@@ -82,7 +81,7 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             DriveBackward(0.6, 1015);
             StopDriving();
             sleep(750);
-            PowerShot2(1400, 500);
+            PowerShot(1400, 500);
             StopDriving();
             sleep(500);
             launcher.launcherServo.setPosition(0.95);
@@ -98,7 +97,7 @@ public class RobotXAutonomous2021 extends LinearOpMode {
             StrafeLeft(0.6, 370);
             StopDriving();
             sleep(750);
-            PowerShot2(1400, 500);
+            PowerShot(1400, 500);
             StopDriving();
             sleep(500);
             launcher.launcherServo.setPosition(0.95);
