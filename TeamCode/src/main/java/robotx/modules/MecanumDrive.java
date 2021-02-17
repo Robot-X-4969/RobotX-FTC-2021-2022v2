@@ -51,9 +51,8 @@ import robotx.libraries.OmniDriveSystem;
 package robotx.modules;
 
 import robotx.libraries.XModule;
-import robotx.opmodes.autonomous.RobotXAutonomous2021;
 
-import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.eventloop.opmode.*;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
