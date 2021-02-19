@@ -29,8 +29,8 @@ public class OpencvAuton extends LinearOpMode {
     public void runOpMode() {
 
 
-        
-        mecanumDrive.init();
+
+
 
 
         opencv.start();
