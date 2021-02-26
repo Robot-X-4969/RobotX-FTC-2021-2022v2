@@ -4,10 +4,9 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import robotx.modules.MecanumDrive;
-import robotx.modules.Opencv;
-import robotx.modules.Opencv.SkystoneDeterminationPipeline;
+import robotx.opmodes.autonomous.Opencv.SkystoneDeterminationPipeline;
 
-import static robotx.modules.Opencv.SkystoneDeterminationPipeline.*;
+import static robotx.opmodes.autonomous.Opencv.SkystoneDeterminationPipeline.*;
 
 
 @Autonomous
@@ -26,34 +25,32 @@ public class OpencvAuton extends LinearOpMode {
 
 
 
-    public void runOpMode() {
+        public void runOpMode () {
 
 
+            telemetry.addData(">", "Press Play to Start Op Mode");
+            telemetry.update();
+
+            waitForStart();
+            //runtime.reset();
+
+            opencv.init();
+            opencv.start();
+
+            while (opModeIsActive()) {
 
 
+                if (ringPosition == RingPosition.FOUR) {
+
+                    telemetry.addData("Wazoo", "Yes");
+                    DriveForward(0.6, 500);
+
+                }
+
+            }
 
 
-        opencv.start();
-        mecanumDrive.start();
-
-
-
-        telemetry.addData(">", "Press Play to Start Op Mode");
-        telemetry.update();
-
-        waitForStart();
-        //runtime.reset();
-
-        while (opModeIsActive()) {
-
-            if (ringPosition == RingPosition.FOUR);
-
-            telemetry.addData("Wazoo","Yes");
-            DriveForward(0.6,500);
         }
-
-
-    }
 
 
 

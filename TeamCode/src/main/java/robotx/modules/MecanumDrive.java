@@ -50,11 +50,12 @@ import robotx.libraries.OmniDriveSystem;
 
 package robotx.modules;
 
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
 import robotx.libraries.XModule;
 import robotx.opmodes.autonomous.RobotXAutonomous2021;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 
 public final class MecanumDrive extends XModule{

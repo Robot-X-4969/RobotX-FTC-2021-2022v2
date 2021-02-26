@@ -1,4 +1,4 @@
-package robotx.modules;
+package robotx.opmodes.autonomous;
 
 /*
  * Copyright (c) 2020 OpenFTC Team
@@ -23,8 +23,8 @@ package robotx.modules;
 
 
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
@@ -38,15 +38,17 @@ import org.openftc.easyopencv.OpenCvCameraRotation;
 import org.openftc.easyopencv.OpenCvInternalCamera;
 import org.openftc.easyopencv.OpenCvPipeline;
 
-@TeleOp
-public class Opencv extends LinearOpMode
-{
+import robotx.modules.MecanumDrive;
+
+@Autonomous
+public class Opencv extends LinearOpMode {
     OpenCvInternalCamera phoneCam;
     SkystoneDeterminationPipeline pipeline;
+    MecanumDrive mecanumDrive;
 
     @Override
-    public void runOpMode()
-    {
+    public void runOpMode() {
+
 
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id", hardwareMap.appContext.getPackageName());
         phoneCam = OpenCvCameraFactory.getInstance().createInternalCamera(OpenCvInternalCamera.CameraDirection.BACK, cameraMonitorViewId);
@@ -58,19 +60,16 @@ public class Opencv extends LinearOpMode
         // landscape orientation, though.
         phoneCam.setViewportRenderingPolicy(OpenCvCamera.ViewportRenderingPolicy.OPTIMIZE_VIEW);
 
-        phoneCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener()
-        {
+        phoneCam.openCameraDeviceAsync(new OpenCvCamera.AsyncCameraOpenListener() {
             @Override
-            public void onOpened()
-            {
-                phoneCam.startStreaming(320,240, OpenCvCameraRotation.SIDEWAYS_LEFT);
+            public void onOpened() {
+                phoneCam.startStreaming(320, 240, OpenCvCameraRotation.SIDEWAYS_LEFT);
             }
         });
 
         waitForStart();
 
-        while (opModeIsActive())
-        {
+        while (opModeIsActive()) {
             telemetry.addData("Analysis", pipeline.getAnalysis());
             telemetry.addData("Position", pipeline.position);
             telemetry.update();
@@ -78,15 +77,15 @@ public class Opencv extends LinearOpMode
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
         }
+
+
     }
 
-    public static class SkystoneDeterminationPipeline extends OpenCvPipeline
-    {
+    public static class SkystoneDeterminationPipeline extends OpenCvPipeline {
         /*
          * An enum to define the skystone position
          */
-        public enum RingPosition
-        {
+        public enum RingPosition {
             FOUR,
             ONE,
             NONE
@@ -101,7 +100,7 @@ public class Opencv extends LinearOpMode
         /*
          * The core values which define the location and size of the sample regions
          */
-        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(181,98);
+        static final Point REGION1_TOPLEFT_ANCHOR_POINT = new Point(181, 98);
 
         static final int REGION_WIDTH = 35;
         static final int REGION_HEIGHT = 25;
@@ -131,22 +130,30 @@ public class Opencv extends LinearOpMode
          * This function takes the RGB frame, converts to YCrCb,
          * and extracts the Cb channel to the 'Cb' variable
          */
-        void inputToCb(Mat input)
-        {
+        void inputToCb(Mat input) {
             Imgproc.cvtColor(input, YCrCb, Imgproc.COLOR_RGB2YCrCb);
             Core.extractChannel(YCrCb, Cb, 1);
         }
 
-        public void init(Mat firstFrame)
-        {
+        public void init(Mat firstFrame) {
             inputToCb(firstFrame);
 
             region1_Cb = Cb.submat(new Rect(region1_pointA, region1_pointB));
         }
 
+        public void joshIsSpecial(Enum RingPosition) {
+
+            if (RingPosition == SkystoneDeterminationPipeline.RingPosition.FOUR) {
+
+                String ringposition = "FOUR";
+
+            }
+
+        }
+
+
         @Override
-        public Mat processFrame(Mat input)
-        {
+        public Mat processFrame(Mat input) {
             inputToCb(input);
 
             avg1 = (int) Core.mean(region1_Cb).val[0];
@@ -159,11 +166,11 @@ public class Opencv extends LinearOpMode
                     2); // Thickness of the rectangle lines
 
             position = RingPosition.FOUR; // Record our analysis
-            if(avg1 > FOUR_RING_THRESHOLD){
+            if (avg1 > FOUR_RING_THRESHOLD) {
                 position = RingPosition.FOUR;
-            }else if (avg1 > ONE_RING_THRESHOLD){
+            } else if (avg1 > ONE_RING_THRESHOLD) {
                 position = RingPosition.ONE;
-            }else{
+            } else {
                 position = RingPosition.NONE;
             }
 
@@ -177,9 +184,130 @@ public class Opencv extends LinearOpMode
             return input;
         }
 
-        public int getAnalysis()
-        {
+
+
+        public int getAnalysis() {
             return avg1;
         }
+
     }
+
+        public void JoshSucks(String ringposition) {
+
+
+            mecanumDrive.init();
+            mecanumDrive.start();
+
+
+            if (pipeline.position.equals(SkystoneDeterminationPipeline.RingPosition.FOUR)) {
+
+                DriveForward(0.6, 500);
+                telemetry.addData("Wazoo","Yes");
+
+            }
+
+        }
+
+
+
+
+
+
+    //Controls
+    public void DriveForward(double power, int time) {
+        mecanumDrive.frontLeft.setPower(-power);
+        mecanumDrive.frontRight.setPower(-power);
+        mecanumDrive.backLeft.setPower(-power);
+        mecanumDrive.backRight.setPower(-power);
+        sleep(time);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+    }
+
+    public void DriveBackward(double power, int time) {
+        mecanumDrive.frontLeft.setPower(power);
+        mecanumDrive.frontRight.setPower(power);
+        mecanumDrive.backLeft.setPower(power);
+        mecanumDrive.backRight.setPower(power);
+        sleep(time);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+    }
+
+    public void StrafeLeft(double power, int time) {
+        mecanumDrive.frontLeft.setPower(power);
+        mecanumDrive.frontRight.setPower(-power);
+        mecanumDrive.backLeft.setPower(-power);
+        mecanumDrive.backRight.setPower(power);
+        sleep(time);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+    }
+
+    public void StrafeRight(double power, int time) {
+        mecanumDrive.frontLeft.setPower(-power);
+        mecanumDrive.frontRight.setPower(power);
+        mecanumDrive.backLeft.setPower(power);
+        mecanumDrive.backRight.setPower(-power);
+        sleep(time);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+    }
+
+    public void TurnLeft(double power, int time) {
+        mecanumDrive.frontLeft.setPower(-power);
+        mecanumDrive.frontRight.setPower(power);
+        mecanumDrive.backLeft.setPower(-power);
+        mecanumDrive.backRight.setPower(power);
+        sleep(time);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+    }
+
+    public void TurnRight(double power, int time) {
+        mecanumDrive.frontLeft.setPower(power);
+        mecanumDrive.frontRight.setPower(-power);
+        mecanumDrive.backLeft.setPower(power);
+        mecanumDrive.backRight.setPower(-power);
+        sleep(time);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+    }
+
+
+    public void StopDriving() {
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+    }
+    public void SlowDownBack(double power, int time){
+        mecanumDrive.frontLeft.setPower(-.3);
+        mecanumDrive.frontRight.setPower(-.3);
+        mecanumDrive.backRight.setPower(-.3);
+        mecanumDrive.backLeft.setPower(-.3);
+        sleep(time);
+        mecanumDrive.frontLeft.setPower(0);
+        mecanumDrive.frontRight.setPower(0);
+        mecanumDrive.backLeft.setPower(0);
+        mecanumDrive.backRight.setPower(0);
+    }
+
+
+
 }
+
+
+
