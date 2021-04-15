@@ -74,6 +74,9 @@ public class Opencv extends LinearOpMode {
             telemetry.addData("Position", pipeline.position);
             telemetry.update();
 
+
+            DriveForward(0.6,500);
+
             // Don't burn CPU cycles busy-looping in this sample
             sleep(50);
         }

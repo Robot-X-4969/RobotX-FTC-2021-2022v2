@@ -1,11 +1,14 @@
 package robotx.modules;
+
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Servo;
 
 import robotx.libraries.XModule;
 import robotx.opmodes.autonomous.RobotXAutonomous2021;
 
-public class Launcher extends XModule {
+@TeleOp
+public class LauncherTwo extends XModule {
 
     public DcMotor launcherMotor;
 
@@ -16,7 +19,7 @@ public class Launcher extends XModule {
     public double powerShot = 0.7;
     boolean launcherOn = false;
 
-    public Launcher(RobotXAutonomous2021 op) {
+    public LauncherTwo(RobotXAutonomous2021 op) {
         super(op);
     }
 
@@ -32,8 +35,7 @@ public class Launcher extends XModule {
             launcherOn = false;
             launcherMotor.setPower(0);
 
-        }
-        else {
+        } else {
             launcherOn = true;
             launcherMotor.setPower(launcherPower);
         }
@@ -43,17 +45,13 @@ public class Launcher extends XModule {
 
         if (xGamepad2().dpad_right.wasPressed()) {
             launcherMotor();
-        }
-
-        else if (xGamepad2().left_stick_button.isDown()) {
+        } else if (xGamepad2().left_stick_button.isDown()) {
             launcherMotor.setPower(powerShot);
         }
 
         if (xGamepad2().right_bumper.wasPressed()) {
             launcherServo.setPosition(0.75);
-        }
-
-        else if (xGamepad2().left_bumper.wasPressed()) {
+        } else if (xGamepad2().left_bumper.wasPressed()) {
             launcherServo.setPosition(0.9);
         }
       /*  if (xGamepad2().right_trigger > 0.5) {
