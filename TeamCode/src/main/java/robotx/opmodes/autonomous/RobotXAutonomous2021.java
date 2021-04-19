@@ -74,7 +74,12 @@ public class RobotXAutonomous2021 extends LinearOpMode {
         if (opModeIsActive()) {
             //Movement
             liftSystem.clawServo.setPosition(0.38);
+<<<<<<< HEAD
             sleep(250);
+=======
+
+            sleep(500);
+>>>>>>> origin/antiopencv
             StrafeRight(0.6, 1025);
             StopDriving();
             sleep(250);

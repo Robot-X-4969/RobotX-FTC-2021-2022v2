@@ -74,7 +74,7 @@ public final class MecanumDrive extends XModule{
         //front left motor
         frontLeft = opMode.hardwareMap.dcMotor.get("frontLeft");
         // frontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
-        frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);            //reverse this; want "forward direction for robot" to be "positive values" /or/ "up on the y-stick"
+        //frontLeft.setDirection(DcMotorSimple.Direction.REVERSE);            //reverse this; want "forward direction for robot" to be "positive values" /or/ "up on the y-stick"
         //when moving forward, the two front wheels spin in opposite directions (left is counter-clockwise, right is clockwise)
         //front right motor
         frontRight = opMode.hardwareMap.dcMotor.get("frontRight");

@@ -3,6 +3,11 @@ package robotx.opmodes;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import robotx.libraries.XOpMode;
+<<<<<<< HEAD
+=======
+//import robotx.modules.MecanumDrive;
+import robotx.modules.IntakeSystem;
+>>>>>>> origin/antiopencv
 import robotx.modules.ConveyorBelt;
 import robotx.modules.IntakeSystem;
 import robotx.modules.Launcher;
